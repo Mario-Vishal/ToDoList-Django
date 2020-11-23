@@ -1,4 +1,4 @@
-#ToDoList-Django
+#ToDoList-Django#
 
 ##My first django application, uses authorization and implements CRUD operations##
 

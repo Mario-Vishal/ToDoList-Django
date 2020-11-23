@@ -1,0 +1,35 @@
+<style>
+    .comp {
+        border-bottom: 3px solid rgb(255, 0, 0);
+    }
+
+</style>
+
+{% extends 'todo/home.html' %}
+
+{% block content %}
+
+<div class="todo-container">
+            
+    <ul class="todo-list">
+        {%for todo in todos %}
+        <div class="todo">
+            
+                <li class="todo-li completed">{{todo}}</li>
+            
+            <form class="complete-btn-form" action="{% url 'completed' todo.id %}" method="POST">
+                {% csrf_token %}
+                <button class="complete-btn" type="submit"><i class="fas fa-check"></i></button>
+            </form>
+            <form class="thrash-btn-form" action="{% url 'delete' todo.id %}" method="POST">
+                {% csrf_token %}
+                <button class="thrash-btn" type="submit"><i class="fas fa-trash"></i></button>
+            </form>
+            
+        </div>
+        
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

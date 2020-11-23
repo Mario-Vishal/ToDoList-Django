@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends 'todo/base.html' %}
+{% block subcontent %}
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDolist</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+
+
+    <div class="home-container">
+        <a class="a-tag" href="{% url 'signupuser' %}"><button class="btn-1">SignUp</button></a>
+        <hr>
+        <a class="a-tag" href="{% url 'loginuser' %}"><button class="btn-1">Login</button></a>
+        
+    </div>
+    
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,54 @@
+<style>
+    .all {
+        border-bottom: 3px solid rgb(255, 0, 0);
+    }
+
+</style>
+
+{% extends 'todo/home.html' %}
+
+{% block content %}
+
+<div class="todo-container">
+            
+    {% if todos %}
+    <ul class="todo-list">
+        {%for todo in todos %}
+        <div class="todo">
+            {% if todo.completed and todo.important %}
+                <li class="todo-li completed important">{{todo}}</li>
+            {% elif todo.important %}
+                <li class="todo-li important">{{todo}}</li>
+            {% elif todo.completed %}
+                <li class="todo-li completed">{{todo}}</li>
+            {% else %}
+            <li class="todo-li">{{todo}}</li>
+            {% endif %}
+            <form class="important-btn-form" action="{% url 'important' todo.id %}" method="POST">
+                {% csrf_token %}
+                <button class="important-btn" type="submit"><i class="fas fa-exclamation"></i></button>
+            </form>
+            <form class="complete-btn-form" action="{% url 'completed' todo.id %}" method="POST">
+                {% csrf_token %}
+                <button class="complete-btn" type="submit"><i class="fas fa-check"></i></button>
+            </form>
+            <form class="thrash-btn-form" action="{% url 'delete' todo.id %}" method="POST" onsubmit="delBtn.disabled=true; return true;">
+                {% csrf_token %}
+                <button name="delBtn" class="thrash-btn" type="submit"><i class="fas fa-trash"></i></button>
+            </form>
+            
+            
+        </div>
+        
+        {% endfor %}
+    </ul>
+    
+</div>
+{% else %}
+<div>
+    <h1>So Empty Add some!!</h1>
+</div>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDolist</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %} "/>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+<body>
+
+    {% if not user.is_authenticated %}
+    <a href="{% url 'home' %}">
+    <div class="logo-section">
+        <h1>ToDolist</h1>
+        <img class="logo" src="{% static 'pencil-logo.png' %}" alt="logo" srcset="">
+    </div>
+    </a>
+    <div class="creator">
+        <h4>Coded by Mario.</h3>
+    </div>
+
+    <!-- <div class="home-container">
+        <a class="a-tag" href="{% url 'signupuser' %}"><button class="btn-1">signupuser</button></a>
+        <hr>
+        <a class="a-tag" href="{% url 'loginuser' %}"><button class="btn-1">login</button></a>
+        
+    </div> -->
+    {% block subcontent %}
+
+    {% endblock %}
+
+    {% else %}
+    {% block maincontent%}
+
+
+    {% endblock %}
+    {% endif %}
+</body>
+</html>
